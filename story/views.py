@@ -1,12 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-
 from .models import Story
 
-def index(request):
-    stories = Story.objects.all()
-    context = {'stories': stories}
-    return render(request, 'index.html', context)
+from django.views import generic
 
-def detail(request, story_id):
-    question = get_object_or_404(Story, pk=story_id)
-    return render(request, 'story.html', {'story': question})
+class IndexView(generic.ListView):
+    template_name = 'index.html'
+    model = Story
+
+class DetailView(generic.DetailView):
+    template_name = 'story.html'
+    model = Story

@@ -19,7 +19,7 @@
 
 	<body>
     <ul>
-    {% for story in stories %}
+    {% for story in story_list %}
       <li><a href="{% url 'detail' story.id %}">{{ story.name }}</a></li>
     {% endfor %}
     </ul>
