@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Verhalen</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<!--[if lt IE 9]>
+    <script src="{% static "lib/js/html5shiv.js" %}"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+    <ul>
+    {% for story in stories %}
+      <li><a href="{% url 'detail' story.id %}">{{ story.name }}</a></li>
+    {% endfor %}
+    </ul>
+	</body>
+</html>
