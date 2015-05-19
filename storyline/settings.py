@@ -25,7 +25,8 @@ SECRET_KEY = '7m^s9f8&i%d99c#a&v3k8c^-h1ad3r$%*$wv2v9f!uyn17pt88'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition
@@ -75,11 +76,9 @@ WSGI_APPLICATION = 'storyline.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(),
 }
 
 
@@ -100,6 +99,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media/'
+
+MEDIA_URL = 'http://wishfulcoding.nl/verhalen/'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
+FTP_STORAGE_LOCATION = os.environ['FTP_URL']
