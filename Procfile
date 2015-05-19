@@ -1,1 +1,1 @@
-web: gunicorn storyline/wsgi.py --log-file -
+web: gunicorn storyline.wsgi --log-file -
